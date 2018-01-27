@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_cast"
+                android:layout_width="@dimen/home_btn_width"
+                android:layout_height="@dimen/home_btn_height"
+                android:layout_centerInParent="true"
+                android:background="@drawable/home_btn_bg"
+                android:drawablePadding="@dimen/home_btn_icon_padding"
+                android:padding="@dimen/home_btn_padding"
+                android:text="无线投屏"
+                android:textColor="@color/home_btn_text_color"
+                android:textSize="@dimen/home_btn_text_size"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_setting"
+                android:layout_width="@dimen/home_btn_width"
+                android:layout_height="@dimen/home_btn_height"
+                android:layout_centerInParent="true"
+                android:background="@drawable/home_btn_bg"
+                android:drawablePadding="@dimen/home_btn_icon_padding"
+                android:padding="@dimen/home_btn_padding"
+                android:text="系统设置"
+                android:textColor="@color/home_btn_text_color"
+                android:textSize="@dimen/home_btn_text_size"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_app_list"
+                android:layout_width="@dimen/home_btn_width"
+                android:layout_height="@dimen/home_btn_height"
+                android:layout_centerInParent="true"
+                android:background="@drawable/home_btn_bg"
+                android:drawablePadding="@dimen/home_btn_icon_padding"
+                android:padding="@dimen/home_btn_padding"
+                android:text="应用列表"
+                android:textColor="@color/home_btn_text_color"
+                android:textSize="@dimen/home_btn_text_size"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
