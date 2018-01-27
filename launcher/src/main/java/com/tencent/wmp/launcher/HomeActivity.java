@@ -14,6 +14,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private Button mBtnSetting;
     private Button mBtnAppList;
 
+    private boolean mForegroundFlag;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,28 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         Drawable appListDrawable = getResources().getDrawable(R.drawable.icon_app_list);
         appListDrawable.setBounds(0, 0, iconWidth, iconHeight);
         mBtnAppList.setCompoundDrawables(null, appListDrawable, null, null);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mForegroundFlag = true;
+        mBaseHandler.postDelayed(mInvokeCastTask, 5 * 1000);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mForegroundFlag = false;
+        mBaseHandler.removeCallbacks(mInvokeCastTask);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mBaseHandler.removeCallbacks(mInvokeCastTask);
     }
 
     @Override
@@ -50,14 +74,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_cast: {
-                try {
-                    Intent intent = new Intent();
-                    intent.setClassName("com.tencent.wmp.demo.box", "com.tencent.wmp.demo.box.activity.SplashActivity");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } catch (Throwable e) {
-                    showInfo("打开无线投屏失败：e = " + e);
-                }
+                invokeCast();
                 break;
             }
             case R.id.btn_setting: {
@@ -81,6 +98,27 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             }
             default:
                 break;
+        }
+    }
+
+
+    private Runnable mInvokeCastTask = new Runnable() {
+        @Override
+        public void run() {
+            if (mForegroundFlag) {
+                invokeCast();
+            }
+        }
+    };
+
+    private void invokeCast() {
+        try {
+            Intent intent = new Intent();
+            intent.setClassName("com.tencent.wmp.demo.box", "com.tencent.wmp.demo.box.activity.SplashActivity");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (Throwable e) {
+            showInfo("打开无线投屏失败：e = " + e);
         }
     }
 
